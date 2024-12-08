@@ -73,3 +73,7 @@ function draw() {
 //and play notes on the computer as that was happening
 
 //but im not sure how to go about the game aspect of checking if the notes played are correct
+
+//tbh my week will be very busy with writing 15pg of thesis
+//so maybe if that grows to be too much this project gets scaled down into being a piano
+//with some visuals on computer screen situation?
