@@ -69,11 +69,11 @@ function draw() {
 
 
 // im sure i could figure out (if i added lights to arduino)
-//how to make it send signal to the arduino to turn on specific lights
-//and play notes on the computer as that was happening
+//how to make p5 send signal to the arduino to turn on specific lights
+//while p5 plays notes on the computer as that was happening
 
 //but im not sure how to go about the game aspect of checking if the notes played are correct
 
-//tbh my week will be very busy with writing 15pg of thesis
+//however my week will be very busy with writing 15pg of thesis
 //so maybe if that grows to be too much this project gets scaled down into being a piano
 //with some visuals on computer screen situation?
