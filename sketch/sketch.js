@@ -35,6 +35,16 @@ function setup() {
   connectButton.mousePressed(connectToSerial);
 }
 
+//for game need it to generate a string of numbers from 1-5
+//convert it to an index
+//so it generates say 2 3 1 4 5
+//and plays sounds 2, 3, 1, 4, 5 in that order
+//and sends that series of numbers to arduino
+//so while the sounds are playing, the lights next to the respective buttons turn on
+
+//then the user repeats the sequence by pressing the buttons and plays the notes again
+//which is the code below
+
 function draw() {
   background(0);
   
@@ -67,13 +77,10 @@ function draw() {
   }
 }
 
+//but im unsure how to go about having the computer check that the notes played are correct
 
-// im sure i could figure out (if i added lights to arduino)
-//how to make p5 send signal to the arduino to turn on specific lights
-//while p5 plays notes on the computer as that was happening
 
-//but im not sure how to go about the game aspect of checking if the notes played are correct
-
-//however my week will be very busy with writing 15pg of thesis
+//also my week will be very busy with writing 15pg of my thesis...
 //so maybe if that grows to be too much this project gets scaled down into being a piano
 //with some visuals on computer screen situation?
+//or just doesn't have the game aspect of checking correct/incorrect
