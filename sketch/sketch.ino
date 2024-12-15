@@ -4,7 +4,11 @@ int pbutton2;
 int pbutton3;
 int pbutton4;
 
-int LED0;
+int LED0 = 6;
+int LED1 = 5;
+int LED2 = 4;
+int LED3 = 3;
+int LED4 = 2;
 
 void setup() {
   Serial.begin(9600);
@@ -14,7 +18,11 @@ void setup() {
   pinMode(9, INPUT);
   pinMode(8, INPUT);
 
+  pinMode(6, OUTPUT);
   pinMode(5, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(2, OUTPUT);
 
   pbutton0 = 0;
   pbutton1 = 0;
@@ -38,29 +46,80 @@ void loop() {
     inString.trim();
 
     int intVal = inString.toInt();
-  }
 
-  //add command like if intVal = 0 then led0 turns on (and make sure all other lights turn off) so its like all lights turn off then light 0 turns on
+    if (intVal == 0) {
+      digitalWrite(LED0, HIGH);
+      digitalWrite(LED1, LOW);
+      digitalWrite(LED2, LOW);
+      digitalWrite(LED3, LOW);
+      digitalWrite(LED4, LOW);
+    }
+
+    if (intVal == 1) {
+      digitalWrite(LED0, LOW);
+      digitalWrite(LED1, HIGH);
+      digitalWrite(LED2, LOW);
+      digitalWrite(LED3, LOW);
+      digitalWrite(LED4, LOW);
+    }
+
+    if (intVal == 2) {
+      digitalWrite(LED0, LOW);
+      digitalWrite(LED1, LOW);
+      digitalWrite(LED2, HIGH);
+      digitalWrite(LED3, LOW);
+      digitalWrite(LED4, LOW);
+    }
+
+    if (intVal == 3) {
+      digitalWrite(LED0, LOW);
+      digitalWrite(LED1, LOW);
+      digitalWrite(LED2, LOW);
+      digitalWrite(LED3, HIGH);
+      digitalWrite(LED4, LOW);
+    }
+
+    if (intVal == 4) {
+      digitalWrite(LED0, LOW);
+      digitalWrite(LED1, LOW);
+      digitalWrite(LED2, LOW);
+      digitalWrite(LED3, LOW);
+      digitalWrite(LED4, HIGH);
+    }
+
+    // if (intVal == 5) {
+    //   digitalWrite(LED0, LOW);
+    //   digitalWrite(LED1, LOW);
+    //   digitalWrite(LED2, LOW);
+    //   digitalWrite(LED3, LOW);
+    //   digitalWrite(LED4, LOW);
+    // }
+  }
 
 //ADD INTO THESE BUTTONS CODE TO LIGHT UP THE RELEVANT LEDS
   if (button0 == 1 && pbutton0 == 0) {
     Serial.println("0");
+    digitalWrite(LED0, HIGH);
   }
 
   if (button1 == 1 && pbutton1 == 0) {
     Serial.println("1");
+    digitalWrite(LED1, HIGH);
   }
 
   if (button2 == 1 && pbutton2 == 0) {
     Serial.println("2");
+    digitalWrite(LED2, HIGH);
   }
 
   if (button3 == 1 && pbutton3 == 0) {
     Serial.println("3");
+    digitalWrite(LED3, HIGH);
   }
 
   if (button4 == 1 && pbutton4 == 0) {
     Serial.println("4");
+    digitalWrite(LED4, HIGH);
   }
 
   pbutton0 = button0;

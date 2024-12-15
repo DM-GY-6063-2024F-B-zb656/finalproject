@@ -44,19 +44,23 @@ function connectToSerial() {
 function place0() {
   if (mSequence[0] == 0) {
     sound0.play();
-    sendSerial(0);
+    sendSerial("0");
     sound0.onended(place1);
   } else if (mSequence[0] == 1) {
     sound1.play();
+    sendSerial("1");
     sound1.onended(place1);
   } else if (mSequence[0] == 2) {
     sound2.play();
+    sendSerial("2");
     sound2.onended(place1);
   } else if (mSequence[0] == 3) {
     sound3.play();
+    sendSerial("3");
     sound3.onended(place1);
   } else if (mSequence[0] == 4) {
     sound4.play();
+    sendSerial("4");
     sound4.onended(place1);
   }
 }
@@ -64,18 +68,23 @@ function place0() {
 function place1() {
   if (mSequence[1] == 0) {
     sound0.play();
+    sendSerial("0");
     sound0.onended(place2);
   } else if (mSequence[1] == 1) {
     sound1.play();
+    sendSerial("1");
     sound1.onended(place2);
   } else if (mSequence[1] == 2) {
     sound2.play();
+    sendSerial("2");
     sound2.onended(place2);
   } else if (mSequence[1] == 3) {
     sound3.play();
+    sendSerial("3");
     sound3.onended(place2);
   } else if (mSequence[1] == 4) {
     sound4.play();
+    sendSerial("4");
     sound4.onended(place2);
   }
 }
@@ -83,18 +92,23 @@ function place1() {
 function place2() {
   if (mSequence[2] == 0) {
     sound0.play();
+    sendSerial("0");
     sound0.onended(place3);
   } else if (mSequence[2] == 1) {
     sound1.play();
+    sendSerial("1");
     sound1.onended(place3);
   } else if (mSequence[2] == 2) {
     sound2.play();
+    sendSerial("2");
     sound2.onended(place3);
   } else if (mSequence[2] == 3) {
     sound3.play();
+    sendSerial("3");
     sound3.onended(place3);
   } else if (mSequence[2] == 4) {
     sound4.play();
+    sendSerial("4");
     sound4.onended(place3);
   }
 }
@@ -102,18 +116,23 @@ function place2() {
 function place3() {
   if (mSequence[3] == 0) {
     sound0.play();
+    sendSerial("0");
     sound0.onended(place4);
   } else if (mSequence[3] == 1) {
     sound1.play();
+    sendSerial("1");
     sound1.onended(place4);
   } else if (mSequence[3] == 2) {
     sound2.play();
+    sendSerial("2");
     sound2.onended(place4);
   } else if (mSequence[3] == 3) {
     sound3.play();
+    sendSerial("3");
     sound3.onended(place4);
   } else if (mSequence[3] == 4) {
     sound4.play();
+    sendSerial("4");
     sound4.onended(place4);
   }
 }
@@ -131,15 +150,22 @@ function place4() {
 
   if (mSequence[4] == 0) {
     sound0.play();
+    sendSerial("0");
   } else if (mSequence[4] == 1) {
     sound1.play();
+    sendSerial("1");
   } else if (mSequence[4] == 2) {
     sound2.play();
+    sendSerial("2");
   } else if (mSequence[4] == 3) {
     sound3.play();
+    sendSerial("3");
   } else if (mSequence[4] == 4) {
     sound4.play();
+    sendSerial("4");
   }
+
+  // sendSerial(5);
 }
 
 //TO DO: NEED CODE TO SEND THIS ARRAY TO ARDUINO
