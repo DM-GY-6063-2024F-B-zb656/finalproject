@@ -15,7 +15,8 @@ let mAnswer = [];
 
 let points;
 
-function preload() { //SOUNDS
+function preload() {
+  //SOUNDS
   sound0 = loadSound("../assets/sound0.wav");
   sound1 = loadSound("../assets/sound1.wav");
   sound2 = loadSound("../assets/sound2.wav");
@@ -24,24 +25,37 @@ function preload() { //SOUNDS
 }
 
 function sendSerial(sounds) {
+  //SEND TO ARDUINO
   if (mSerial.opened()) {
     mSerial.write(sounds + "\n");
   }
 }
 
 function connectToSerial() {
+  //CONNECT TO SERIAL AND CREATE GAME BUTTONS
   if (!mSerial.opened()) {
     mSerial.open(9600);
     connectButton.hide();
-
-    startGame = createButton("Start the Game");
-    startGame.position(width/2, height/4);
-    startGame.mousePressed(createGameArray);
   }
+
+  startGame = createButton("New Sound Pattern");
+  startGame.position(width / 2 - startGame.width / 2, height / 8);
+  startGame.mousePressed(createGameArray);
+
+  resetGame = createButton("Restart");
+  resetGame.position(width / 2 - resetGame.width / 2, height / 8 + 50);
+  resetGame.mousePressed(restartGame);
 }
 
-//send # of sound to arduino when sound plays
+function restartGame() {
+  //REFRESH POINTS AND ARRAYS
+  points = 0;
+  mSequence.length = 0;
+  mAnswer.length = 0;
+}
+
 function place0() {
+  //ARRAY PLACE 0 SOUNDS
   if (mSequence[0] == 0) {
     sound0.play();
     sendSerial("0");
@@ -66,6 +80,7 @@ function place0() {
 }
 
 function place1() {
+  //ARRAY PLACE 1 SOUNDS
   if (mSequence[1] == 0) {
     sound0.play();
     sendSerial("0");
@@ -90,6 +105,7 @@ function place1() {
 }
 
 function place2() {
+  //ARRAY PLACE 2 SOUNDS
   if (mSequence[2] == 0) {
     sound0.play();
     sendSerial("0");
@@ -114,6 +130,7 @@ function place2() {
 }
 
 function place3() {
+  //ARRAY PLACE 3 SOUNDS
   if (mSequence[3] == 0) {
     sound0.play();
     sendSerial("0");
@@ -138,10 +155,11 @@ function place3() {
 }
 
 function doNothing() {
-
+  //STOP onended EFFECTS
 }
 
 function place4() {
+  //ARRAY PLACE 4 SOUNDS
   sound0.onended(doNothing);
   sound1.onended(doNothing);
   sound2.onended(doNothing);
@@ -164,44 +182,21 @@ function place4() {
     sound4.play();
     sendSerial("4");
   }
-
-  // sendSerial(5);
 }
 
-//TO DO: NEED CODE TO SEND THIS ARRAY TO ARDUINO
-function createGameArray() { //generates random sequence for sounds
-  startGame.hide();
-
-  resetGame = createButton("Restart");
-  resetGame.position(200, 100);
-  resetGame.mousePressed(setup);
-  
+function createGameArray() {
+  //GENERATE SOUND SEQUENCE & BEGIN PLAYING
   for (let i = 0; i < 5; i++) {
-    let randomNumber = random(['0', '1', '2', '3', '4']);
+    let randomNumber = random(["0", "1", "2", "3", "4"]);
     mSequence.push(randomNumber);
   }
 
   print(mSequence);
-  // sendSerial({data: { s0: mSequence[0], s1: mSequence[1], s2: mSequence[2], s3: mSequence[3], s4: mSequence[4]}});
-
   place0();
-
-  // for (let idx = 0; idx < mSequence.length; idx++) {
-  //   if (mSequence[idx] == 0) {
-  //     sound0.play();
-  //   } else if (mSequence[idx] == 1) {
-  //     sound1.play();
-  //   } else if (mSequence[idx] == 2) {
-  //     sound2.play();
-  //   } else if (mSequence[idx] == 3) {
-  //     sound3.play();
-  //   } else if (mSequence[idx] == 4) {
-  //     sound4.play();
-  //   }
-  // }
 }
 
 function checkAnswer() {
+  //CHECK PLAYER'S SEQUENCE, ADD/RESET POINTS
   let mSequenceString = mSequence.toString();
   let mAnswerString = mAnswer.toString();
 
@@ -221,8 +216,8 @@ function setup() {
 
   mSerial = createSerial();
   connectButton = createButton("Connect To Serial");
-  connectButton.position(width / 2, height / 2);
-  connectButton.mousePressed(connectToSerial);  
+  connectButton.position(width / 2 - connectButton.width / 2, height / 4);
+  connectButton.mousePressed(connectToSerial);
 
   points = 0;
 }
@@ -230,49 +225,60 @@ function setup() {
 function draw() {
   background(0);
   fill(255);
+
+  //INSTRUCTIONS
+  textSize(20);
+  textAlign(LEFT, TOP);
+  text("Instructions:", 50, 50);
+  text("1. Press Connect to Serial to begin", 50, 70);
+  text("2. Press New Sound Sequence for a sound pattern", 50, 90);
+  text("3. Recreate the sound pattern with buttons on Arduino", 50, 110);
+  text("4. Press Restart to reset points and sound patterns", 50, 130);
+  text("Points reset if you fail to match the sound pattern", 50, 150);
+  text("Use Chrome for game to run correctly", 50, 170);
+
+  //POINT COUNTER
   textSize(50);
-  text("Points:" + " " + points, width/3, height/2);
-  
+  textAlign(CENTER, CENTER);
+  text("Points:" + " " + points, width / 2, height / 2);
+
+  //PLAY SOUNDS WHEN BUTTONS ARE PRESSED
+  //SEND NUMBER INTO USER ANSWER ARRAY
   if (mSerial.opened() && mSerial.availableBytes() > 0) {
-  mLine = mSerial.readUntil("\n");
+    mLine = mSerial.readUntil("\n");
 
-  buttonVal = int(mLine);
-  print(buttonVal);
+    buttonVal = int(mLine);
+    print(buttonVal);
 
-  //CAN ALL OF THIS BE MADE INTO A CLASS? LEAVE THAT TIL LAST TO SEE IF IT WORKS
-  //okay if you take this out of the if statement it just repeats forever and forever.
-  //but you might be able to make it a function?
-  if (buttonVal == 0) {
-    sound0.play();
-    mAnswer.push('0');
+    if (buttonVal == 0) {
+      sound0.play();
+      mAnswer.push("0");
+    }
+
+    if (buttonVal == 1) {
+      sound1.play();
+      mAnswer.push("1");
+    }
+
+    if (buttonVal == 2) {
+      sound2.play();
+      mAnswer.push("2");
+    }
+
+    if (buttonVal == 3) {
+      sound3.play();
+      mAnswer.push("3");
+    }
+
+    if (buttonVal == 4) {
+      sound4.play();
+      mAnswer.push("4");
+    }
+
+    print(mAnswer);
   }
 
-  if (buttonVal == 1) {
-    sound1.play();
-    mAnswer.push('1');
-  }
-
-  if (buttonVal == 2) {
-    sound2.play();
-    mAnswer.push('2');
-  }
-
-  if (buttonVal == 3) {
-    sound3.play();
-    mAnswer.push('3');
-  }
-
-  if (buttonVal == 4) {
-    sound4.play();
-    mAnswer.push('4');
-  }
-
-  print(mAnswer);
-  }
-
-  //code to say if [sound] is playing send signal to arduino to turn on [LED]
-  //would this go somewhere else because its sending signal rather than receiving?
-
+  //CHECK ANSWERS AGAINST GAME SEQUENCE
   if (mAnswer.length == 5) {
     checkAnswer();
     startGame.show();

@@ -28,3 +28,21 @@ The Arduino components needed would be 5 buttons and 5 lights (and as many resis
 The code for this (on the Arduino side) would, I imagine be similar to the password machine homework, but I need to figure out a way for it to recognize buttons pressed in specific sequences. Or perhaps that would be on the p5.js side, where the string of button presses is sent to p5.js.
 
 I imagine for the sounds I will upload clips of notes in the basic scale. I will probably have to have some people play the game to make sure its visually easy to understand how to play, etc. 
+
+# FINAL 
+
+//system diagram
+//fsm diagram
+//circuit diagram
+
+My project obviously uses the p5 sound library, and I was going to use the JSON library for Arduino but it ended up not being necessary.
+
+My project uses 5 buttons to send data to p5, each button corresponding triggering a sound to be played on the computer. I also have 5 LED lights that turn on when the buttons are pressed, or when the computer plays a sound sequence.
+
+I decided to make this game because in class, I found myself most interested in the sound functions of p5 and the buttons in Arduino, and I was inspired by how many people made games during our midterm projects. The amount of components needed on my Arduino for this project (5 buttons, 5 LEDS, and a lot of wires), and the fact that the Arduino and p5 both need to be able to send and receive information meant that there was a lot of trial and error testing, and slowly making sure one component worked on its own before incorporating it into the full project.
+
+Since I put the LEDs in last, I had to test the button and sound functions by printing the game sequence in the browser console and working off of that, which was helpful because I could also print the answer sequence and make sure each button was sending information correctly when pressed.
+
+I added some instructions once I finished the project just to make it clear how each onscreen button worked to the user.
+
+

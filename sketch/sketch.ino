@@ -31,9 +31,6 @@ void setup() {
   pbutton4 = 0;
 }
 
-//NEED CODE TO RECEIVE THE mSequence ARRAY FROM P5
-//AND THEN MAKE A FOR LOOP WHERE FOR THAT ARRAY IT LIGHTS UP THE RELEVANT LEDS
-
 void loop() {
   int button0 = digitalRead(11);
   int button1 = digitalRead(10);
@@ -41,6 +38,7 @@ void loop() {
   int button3 = digitalRead(8);
   int button4 = digitalRead(12);
 
+  //WHEN SEQUENCE NOTES PLAY IN P5, CORRECT LIGHTS GO ON
   if (Serial.available() > 0) {
     String inString = Serial.readStringUntil('\n');
     inString.trim();
@@ -86,40 +84,52 @@ void loop() {
       digitalWrite(LED3, LOW);
       digitalWrite(LED4, HIGH);
     }
-
-    // if (intVal == 5) {
-    //   digitalWrite(LED0, LOW);
-    //   digitalWrite(LED1, LOW);
-    //   digitalWrite(LED2, LOW);
-    //   digitalWrite(LED3, LOW);
-    //   digitalWrite(LED4, LOW);
-    // }
   }
 
-//ADD INTO THESE BUTTONS CODE TO LIGHT UP THE RELEVANT LEDS
+  //WHEN BUTTONS ARE PRESSED, CORRECT LIGHTS GO ON
   if (button0 == 1 && pbutton0 == 0) {
     Serial.println("0");
     digitalWrite(LED0, HIGH);
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, LOW);
   }
 
   if (button1 == 1 && pbutton1 == 0) {
     Serial.println("1");
     digitalWrite(LED1, HIGH);
+    digitalWrite(LED0, LOW);
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, LOW);
   }
 
   if (button2 == 1 && pbutton2 == 0) {
     Serial.println("2");
     digitalWrite(LED2, HIGH);
+    digitalWrite(LED0, LOW);
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, LOW);
   }
 
   if (button3 == 1 && pbutton3 == 0) {
     Serial.println("3");
     digitalWrite(LED3, HIGH);
+    digitalWrite(LED0, LOW);
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED4, LOW);
   }
 
   if (button4 == 1 && pbutton4 == 0) {
     Serial.println("4");
     digitalWrite(LED4, HIGH);
+    digitalWrite(LED0, LOW);
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED1, LOW);
   }
 
   pbutton0 = button0;
