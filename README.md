@@ -31,9 +31,17 @@ I imagine for the sounds I will upload clips of notes in the basic scale. I will
 
 # FINAL 
 
-//system diagram
-//fsm diagram
-//circuit diagram
+### SYSTEM DIAGRAM
+
+![system diagram](./assets/systemdiagram.jpg)
+
+### FSM DIAGRAM
+
+![fsm diagram](./assets/fsmdiagram.jpg)
+
+### CIRCUIT DIAGRAM
+
+![circuit diagram](./assets/circuit.png)
 
 My project obviously uses the p5 sound library, and I was going to use the JSON library for Arduino but it ended up not being necessary.
 
@@ -44,5 +52,11 @@ I decided to make this game because in class, I found myself most interested in 
 Since I put the LEDs in last, I had to test the button and sound functions by printing the game sequence in the browser console and working off of that, which was helpful because I could also print the answer sequence and make sure each button was sending information correctly when pressed.
 
 I added some instructions once I finished the project just to make it clear how each onscreen button worked to the user.
+
+![circuit photo](./assets/circuitph1.jpg)
+
+![circuit photo](./assets/circuitph2.jpg)
+
+![circuit photo](./assets/circuitph3.jpg)
 
 
